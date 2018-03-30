@@ -2,10 +2,9 @@ package com.dimafeng.testcontainers.integration
 
 import java.sql.DriverManager
 
-import com.dimafeng.testcontainers.{ForAllTestContainer, MySQLContainer}
-import org.junit.runner.RunWith
+import com.dimafeng.testcontainers.containers.MySQLContainer
+import com.dimafeng.testcontainers.scalatest.ForAllTestContainer
 import org.scalatest.FlatSpec
-import org.scalatest.junit.JUnitRunner
 
 class MysqlSpec extends FlatSpec with ForAllTestContainer {
 

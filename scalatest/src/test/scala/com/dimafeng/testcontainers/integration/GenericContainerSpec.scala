@@ -1,11 +1,10 @@
 package com.dimafeng.testcontainers.integration
-
+// scalastyle:off magic.number
 import java.net.URL
 
-import com.dimafeng.testcontainers.{ForAllTestContainer, GenericContainer}
-import org.junit.runner.RunWith
+import com.dimafeng.testcontainers.GenericContainer
+import com.dimafeng.testcontainers.scalatest.ForAllTestContainer
 import org.scalatest.FlatSpec
-import org.scalatest.junit.JUnitRunner
 import org.testcontainers.containers.wait.Wait
 
 import scala.io.Source

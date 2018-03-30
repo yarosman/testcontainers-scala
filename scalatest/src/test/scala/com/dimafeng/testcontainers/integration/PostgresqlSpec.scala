@@ -2,10 +2,9 @@ package com.dimafeng.testcontainers.integration
 
 import java.sql.DriverManager
 
-import com.dimafeng.testcontainers.{ForAllTestContainer, PostgreSQLContainer}
-import org.junit.runner.RunWith
+import com.dimafeng.testcontainers.containers.PostgreSQLContainer
+import com.dimafeng.testcontainers.scalatest.ForAllTestContainer
 import org.scalatest.FlatSpec
-import org.scalatest.junit.JUnitRunner
 
 class PostgresqlSpec extends FlatSpec with ForAllTestContainer  {
 

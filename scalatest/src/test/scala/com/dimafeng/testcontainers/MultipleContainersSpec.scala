@@ -2,6 +2,7 @@ package com.dimafeng.testcontainers
 
 import com.dimafeng.testcontainers.ContainerSpec.{SampleContainer, SampleOTCContainer}
 import com.dimafeng.testcontainers.MultipleContainersSpec.{ExampleContainerWithVariable, InitializableContainer, TestSpec}
+import com.dimafeng.testcontainers.scalatest.ForEachTestContainer
 import org.junit.runner.Description
 import org.mockito.Matchers.any
 import org.mockito.Mockito.{times, verify}

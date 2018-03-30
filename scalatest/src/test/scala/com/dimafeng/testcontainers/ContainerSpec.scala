@@ -1,6 +1,7 @@
 package com.dimafeng.testcontainers
 
 import com.dimafeng.testcontainers.ContainerSpec._
+import com.dimafeng.testcontainers.scalatest.{ForAllTestContainer, ForEachTestContainer}
 import org.junit.runner.Description
 import org.mockito.Matchers.any
 import org.mockito.Mockito

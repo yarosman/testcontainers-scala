@@ -1,25 +1,11 @@
-package com.dimafeng.testcontainers
+package com.dimafeng.testcontainers.containers
 
 import java.io.File
 import java.net.URL
 
-import org.openqa.selenium.WebDriver
+import com.dimafeng.testcontainers.SingleContainer
 import org.openqa.selenium.remote.{DesiredCapabilities, RemoteWebDriver}
-import org.scalatest.Suite
 import org.testcontainers.containers.BrowserWebDriverContainer
-
-
-trait SeleniumTestContainerSuite extends ForEachTestContainer {
-  self: Suite =>
-
-  def desiredCapabilities: DesiredCapabilities
-
-  def recordingMode: (BrowserWebDriverContainer.VncRecordingMode, File) = null
-
-  val container = SeleniumContainer(desiredCapabilities, recordingMode)
-
-  implicit def webDriver: WebDriver = container.webDriver
-}
 
 class SeleniumContainer(desiredCapabilities: Option[DesiredCapabilities] = None,
                         recordingMode: Option[(BrowserWebDriverContainer.VncRecordingMode, File)] = None)
@@ -27,6 +13,7 @@ class SeleniumContainer(desiredCapabilities: Option[DesiredCapabilities] = None,
   require(desiredCapabilities.isDefined, "'desiredCapabilities' is required parameter")
 
   type OTCContainer = BrowserWebDriverContainer[T] forSome {type T <: BrowserWebDriverContainer[T]}
+
   override val container: OTCContainer = new BrowserWebDriverContainer()
   desiredCapabilities.foreach(container.withDesiredCapabilities)
   recordingMode.foreach(Function.tupled(container.withRecordingMode))
