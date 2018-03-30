@@ -95,41 +95,61 @@ lazy val core = (project in file("core"))
         "com.chuusai" %% "shapeless" % shapelessVersion
       )
         ++ PROVIDED(
-        "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion,
-        "org.testcontainers" % "selenium" % testcontainersVersion,
-        "org.slf4j" % "slf4j-simple" % slf4jVersion,
-        "org.testcontainers" % "mysql" % testcontainersVersion,
-        "org.testcontainers" % "postgresql" % testcontainersVersion
-      )
-        ++ TEST(
-        "mysql" % "mysql-connector-java" % mysqlConnectorVersion,
-        "junit" % "junit" % "4.12",
-        "org.testcontainers" % "selenium" % testcontainersVersion,
-        "org.postgresql" % "postgresql" % postgresqlDriverVersion,
-        "org.mockito" % "mockito-all" % mockitoVersion
-      )
+          "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion,
+          "org.testcontainers" % "selenium" % testcontainersVersion,
+          "org.slf4j" % "slf4j-simple" % slf4jVersion,
+          "org.testcontainers" % "mysql" % testcontainersVersion,
+          "org.testcontainers" % "postgresql" % testcontainersVersion
+        )
   )
 
 lazy val scalatest = (project in file("scalatest"))
   .dependsOn(core)
+  .aggregate(core)
   .settings(
     libraryDependencies ++=
-      PROVIDED(
+      COMPILE(
+        "org.testcontainers" % "testcontainers" % testcontainersVersion,
+        "com.chuusai" %% "shapeless" % shapelessVersion
+      )
+
+      ++ PROVIDED(
         "org.scalatest" %% "scalatest" % scalaTestVersion,
         "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion,
         "org.testcontainers" % "selenium" % testcontainersVersion
       )
-        ++ TEST(
-        "org.mockito" % "mockito-all" % mockitoVersion
+      ++ TEST(
+        "mysql" % "mysql-connector-java" % mysqlConnectorVersion,
+        "junit" % "junit" % "4.12",
+        "org.postgresql" % "postgresql" % postgresqlDriverVersion,
+        "org.mockito" % "mockito-all" % mockitoVersion,
+        "org.testcontainers" % "mysql" % testcontainersVersion,
+        "org.testcontainers" % "postgresql" % testcontainersVersion
       )
   )
 
 lazy val specs2 = (project in file("specs2"))
   .dependsOn(core)
+  .aggregate(core)
   .settings(
     libraryDependencies ++=
-      PROVIDED(
+      COMPILE(
+        "org.testcontainers" % "testcontainers" % testcontainersVersion,
+        "com.chuusai" %% "shapeless" % shapelessVersion
+      )
+
+      ++ PROVIDED(
         "org.specs2" %% "specs2-core" % specs2TestVersion,
         "org.seleniumhq.selenium" % "selenium-java" % seleniumVersion,
-        "org.testcontainers" % "selenium" % testcontainersVersion)
+        "org.testcontainers" % "selenium" % testcontainersVersion
+      )
+
+      ++ TEST(
+        "mysql" % "mysql-connector-java" % mysqlConnectorVersion,
+        "junit" % "junit" % "4.12",
+        "org.postgresql" % "postgresql" % postgresqlDriverVersion,
+        "org.mockito" % "mockito-all" % mockitoVersion,
+        "org.testcontainers" % "mysql" % testcontainersVersion,
+        "org.testcontainers" % "postgresql" % testcontainersVersion
+      )
   )
